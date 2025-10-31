@@ -49,7 +49,7 @@
     "tourze/doctrine-user-bundle": "0.0.*",
     "tourze/easy-admin-enum-field-bundle": "0.0.*",
     "tourze/easy-admin-menu-bundle": "0.1.*",
-    "tourze/enum-extra": "0.1.*",
+    "tourze/enum-extra": "1.*",
     "tourze/lock-service-bundle": "0.1.*",
     "tourze/redis-dedicated-connection-bundle": "0.0.*",
     "tourze/symfony-dependency-service-loader": "1.*",
