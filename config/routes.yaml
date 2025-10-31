@@ -1,0 +1,4 @@
+auto_js_control:
+    resource: '../src/Controller/'
+    type: attribute
+    prefix: /api/auto-js

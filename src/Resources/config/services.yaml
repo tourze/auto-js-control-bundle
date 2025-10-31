@@ -1,0 +1,68 @@
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  # 自动配置指令处理器
+  _instanceof:
+    Tourze\AutoJsControlBundle\Handler\InstructionHandlerInterface:
+      tags: [ 'auto_js_control.instruction' ]
+
+  # 批量注册服务目录
+  Tourze\AutoJsControlBundle\Service\:
+    resource: '../../Service/'
+
+  Tourze\AutoJsControlBundle\Repository\:
+    resource: '../../Repository/'
+
+  Tourze\AutoJsControlBundle\Command\:
+    resource: '../../Command/'
+    tags: [ 'console.command' ]
+
+  Tourze\AutoJsControlBundle\EventSubscriber\:
+    resource: '../../EventSubscriber/'
+
+
+  # Handler 自动发现
+  Tourze\AutoJsControlBundle\Handler\:
+    resource: '../../Handler/'
+    tags: [ 'auto_js_control.instruction' ]
+
+  Tourze\AutoJsControlBundle\Controller\:
+    resource: '../../Controller/'
+
+  # 存储适配器
+  Tourze\AutoJsControlBundle\Service\StorageAdapterInterface:
+    alias: 'Tourze\AutoJsControlBundle\Service\CacheStorageAdapter'
+
+  # Redis 存储适配器需要在应用层手动配置（当redis.autojs_connection可用时）
+
+  # Cache 存储适配器（默认使用，不提供Redis实例）
+  Tourze\AutoJsControlBundle\Service\CacheStorageAdapter:
+    arguments:
+      - '@cache.app'
+
+  # 缓存存储服务
+  Tourze\AutoJsControlBundle\Service\CacheStorageService:
+    arguments:
+      - '@Tourze\AutoJsControlBundle\Service\StorageAdapterInterface'
+
+  # InstructionQueueService 不需要特殊配置
+  Tourze\AutoJsControlBundle\Service\InstructionQueueService:
+    autowire: true
+
+
+  # 接口绑定
+  Tourze\AutoJsControlBundle\Service\DeviceManagerInterface:
+    alias: 'Tourze\AutoJsControlBundle\Service\DeviceManager'
+
+  Tourze\AutoJsControlBundle\Contract\DeviceMonitorDataRepositoryInterface:
+    alias: 'Tourze\AutoJsControlBundle\Repository\DeviceMonitorDataRepository'
+
+  # 测试服务公开
+  Tourze\AutoJsControlBundle\Service\TaskCrudService:
+    public: true
+
+  Tourze\AutoJsControlBundle\Service\TaskTargetService:
+    public: true

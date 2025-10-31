@@ -1,0 +1,35 @@
+# Auto.js Control Bundle 默认配置
+auto_js_control:
+    # 设备心跳配置
+    heartbeat_timeout: 120        # 心跳超时时间（秒）
+    heartbeat_interval: 30        # 期望的心跳间隔（秒）
+    
+    # 队列配置
+    queue_polling_interval: 5     # 队列轮询间隔（秒）
+    instruction_timeout: 300      # 指令执行超时（秒）
+    max_retry_attempts: 3         # 最大重试次数
+    
+    # 安全配置
+    security:
+        api_key_header: 'X-API-Key'       # API Key 请求头名称
+        enable_ip_whitelist: false        # 是否启用 IP 白名单
+        allowed_ips: []                   # 允许的 IP 地址列表
+        # allowed_ips:
+        #     - '127.0.0.1'
+        #     - '192.168.1.0/24'
+    
+    # 日志配置
+    logging:
+        enable_device_logs: true          # 是否记录设备日志
+        log_retention_days: 30            # 日志保留天数
+
+# Monolog 配置（可选）
+monolog:
+    channels:
+        - auto_js_control
+    handlers:
+        auto_js_control:
+            type: stream
+            path: '%kernel.logs_dir%/auto_js_control.log'
+            level: debug
+            channels: ['auto_js_control']

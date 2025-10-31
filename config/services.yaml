@@ -1,0 +1,23 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    # 自动配置指令处理器
+    _instanceof:
+        Tourze\AutoJsControlBundle\Handler\InstructionHandlerInterface:
+            tags: ['auto_js_control.instruction']
+
+    Tourze\AutoJsControlBundle\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/AutoJsControlBundle.php'
+
+    # 控制器配置
+    Tourze\AutoJsControlBundle\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+    

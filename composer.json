@@ -1,0 +1,82 @@
+{
+  "name": "tourze/auto-js-control-bundle",
+  "description": "Auto.js设备云控管理系统",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "require": {
+    "ext-Reflection": "*",
+    "ext-SPL": "*",
+    "ext-date": "*",
+    "ext-hash": "*",
+    "ext-intl": "*",
+    "ext-json": "*",
+    "ext-pcntl": "*",
+    "ext-pcre": "*",
+    "ext-random": "*",
+    "ext-redis": "*",
+    "doctrine/collections": "^2.3",
+    "doctrine/dbal": "^4.0",
+    "doctrine/doctrine-bundle": "^2.13",
+    "doctrine/orm": "^3.0",
+    "doctrine/persistence": "^4.1",
+    "easycorp/easyadmin-bundle": "^4",
+    "knplabs/knp-menu": "^3.7",
+    "psr/cache": "^2.0 || ^3.0",
+    "psr/log": "^3|^2|^1",
+    "symfony/cache": "^7.3",
+    "symfony/cache-contracts": "^3",
+    "symfony/config": "^7.3",
+    "symfony/console": "^7.3",
+    "symfony/dependency-injection": "^7.3",
+    "symfony/doctrine-bridge": "^7.3",
+    "symfony/event-dispatcher": "^7.3",
+    "symfony/event-dispatcher-contracts": "^3",
+    "symfony/framework-bundle": "^7.3",
+    "symfony/http-foundation": "^7.3",
+    "symfony/http-kernel": "^7.3",
+    "symfony/routing": "^7.3",
+    "symfony/security-core": "^7.3",
+    "symfony/security-http": "^7.3",
+    "symfony/service-contracts": "^3.6",
+    "symfony/validator": "^7.3",
+    "symfony/yaml": "^7.3",
+    "tourze/bundle-dependency": "1.*",
+    "tourze/device-bundle": "0.1.*",
+    "tourze/doctrine-indexed-bundle": "0.0.*",
+    "tourze/doctrine-ip-bundle": "0.0.*",
+    "tourze/doctrine-timestamp-bundle": "0.0.*",
+    "tourze/doctrine-track-bundle": "0.1.*",
+    "tourze/doctrine-user-bundle": "0.0.*",
+    "tourze/easy-admin-enum-field-bundle": "0.0.*",
+    "tourze/easy-admin-menu-bundle": "0.1.*",
+    "tourze/enum-extra": "0.1.*",
+    "tourze/lock-service-bundle": "0.1.*",
+    "tourze/redis-dedicated-connection-bundle": "0.0.*",
+    "tourze/symfony-dependency-service-loader": "0.0.*",
+    "tourze/symfony-routing-auto-loader-bundle": "0.0.*"
+  },
+  "require-dev": {
+    "doctrine/data-fixtures": "^2.0",
+    "doctrine/doctrine-fixtures-bundle": "^4.0",
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^11.5",
+    "symfony/phpunit-bridge": "^7.3",
+    "tourze/phpunit-base": "1.*",
+    "tourze/phpunit-doctrine-entity": "0.0.*",
+    "tourze/phpunit-enum": "0.0.*",
+    "tourze/phpunit-symfony-kernel-test": "0.0.*",
+    "tourze/phpunit-symfony-unit-test": "0.0.*",
+    "tourze/phpunit-symfony-web-test": "0.0.*",
+    "tourze/symfony-testing-framework": "0.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tourze\\AutoJsControlBundle\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tourze\\AutoJsControlBundle\\Tests\\": "tests"
+    }
+  }
+}
