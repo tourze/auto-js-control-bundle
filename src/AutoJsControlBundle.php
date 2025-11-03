@@ -15,6 +15,7 @@ use Tourze\DoctrineIpBundle\DoctrineIpBundle;
 use Tourze\DoctrineTimestampBundle\DoctrineTimestampBundle;
 use Tourze\DoctrineTrackBundle\DoctrineTrackBundle;
 use Tourze\DoctrineUserBundle\DoctrineUserBundle;
+use Tourze\EasyAdminMenuBundle\EasyAdminMenuBundle;
 use Tourze\LockServiceBundle\LockServiceBundle;
 use Tourze\RedisDedicatedConnectionBundle\RedisDedicatedConnectionBundle;
 use Tourze\RoutingAutoLoaderBundle\RoutingAutoLoaderBundle;
@@ -73,6 +74,7 @@ class AutoJsControlBundle extends Bundle implements BundleDependencyInterface
             LockServiceBundle::class => ['all' => true],
             RedisDedicatedConnectionBundle::class => ['all' => true],
             RoutingAutoLoaderBundle::class => ['all' => true],
+            EasyAdminMenuBundle::class => ['all' => true],
         ];
     }
 }
