@@ -42,10 +42,10 @@ final class UploadLogsController extends AbstractApiController
             $data = $this->getJsonData($request);
 
             $logRequest = new DeviceLogRequest(
-                deviceCode: $data['deviceCode'] ?? '',
-                signature: $data['signature'] ?? '',
-                timestamp: $data['timestamp'] ?? 0,
-                logs: $data['logs'] ?? []
+                deviceCode: is_string($data['deviceCode'] ?? '') ? $data['deviceCode'] ?? '' : '',
+                signature: is_string($data['signature'] ?? '') ? $data['signature'] ?? '' : '',
+                timestamp: is_int($data['timestamp'] ?? 0) ? $data['timestamp'] ?? 0 : 0,
+                logs: $this->extractLogEntries($data['logs'] ?? [])
             );
 
             $this->validateRequest($logRequest);
@@ -117,5 +117,34 @@ final class UploadLogsController extends AbstractApiController
         }
 
         return $autoJsDevice;
+    }
+
+    /**
+     * @param mixed $logs
+     * @return array<int, array{level: string, type: string, message: string, logTime: string, context?: string|null, stackTrace?: string|null}>
+     */
+    private function extractLogEntries(mixed $logs): array
+    {
+        if (!is_array($logs)) {
+            return [];
+        }
+
+        $result = [];
+        foreach ($logs as $index => $log) {
+            if (!is_array($log)) {
+                continue;
+            }
+
+            $result[$index] = [
+                'level' => is_string($log['level'] ?? '') ? $log['level'] : 'INFO',
+                'type' => is_string($log['type'] ?? '') ? $log['type'] : 'GENERAL',
+                'message' => is_string($log['message'] ?? '') ? $log['message'] : '',
+                'logTime' => is_string($log['logTime'] ?? '') ? $log['logTime'] : (new \DateTimeImmutable())->format('c'),
+                'context' => isset($log['context']) ? (is_string($log['context']) || is_null($log['context']) ? $log['context'] : json_encode($log['context'])) : null,
+                'stackTrace' => isset($log['stackTrace']) ? (is_string($log['stackTrace']) || is_null($log['stackTrace']) ? $log['stackTrace'] : json_encode($log['stackTrace'])) : null,
+            ];
+        }
+
+        return $result;
     }
 }

@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Attribute\AdminCrud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -24,7 +25,7 @@ use Tourze\AutoJsControlBundle\Entity\DeviceMonitorData;
  *
  * @extends AbstractCrudController<DeviceMonitorData>
  */
-#[AdminCrud]
+#[AdminCrud(routePath: '/auto-js/device-monitor-data', routeName: 'auto_js_device_monitor_data')]
 final class DeviceMonitorDataCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -65,6 +66,11 @@ final class DeviceMonitorDataCrudController extends AbstractCrudController
                 return $action->setIcon('fa fa-eye')->setLabel('查看详情');
             })
         ;
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters;
     }
 
     public function configureFields(string $pageName): iterable

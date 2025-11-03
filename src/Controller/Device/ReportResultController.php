@@ -104,7 +104,7 @@ final class ReportResultController extends AbstractApiController
             output: $this->extractOptionalStringParam($data, 'output'),
             errorMessage: $this->extractOptionalStringParam($data, 'errorMessage'),
             executionMetrics: $this->extractArrayParam($data, 'executionMetrics'),
-            screenshots: $this->extractArrayParam($data, 'screenshots')
+            screenshots: $this->extractStringArrayParam($data, 'screenshots')
         );
     }
 
@@ -159,6 +159,23 @@ final class ReportResultController extends AbstractApiController
 
     /**
      * @param array<string, mixed> $data
+     * @return array<string>|null
+     */
+    private function extractStringArrayParam(array $data, string $key): ?array
+    {
+        if (!isset($data[$key])) {
+            return null;
+        }
+
+        if (!is_array($data[$key])) {
+            return null;
+        }
+
+        return array_filter($data[$key], fn($item) => is_string($item));
+    }
+
+    /**
+     * @param array<string, mixed> $data
      */
     private function extractExecutionStatus(array $data): ExecutionStatus
     {
@@ -166,7 +183,12 @@ final class ReportResultController extends AbstractApiController
             return ExecutionStatus::PENDING;
         }
 
-        return ExecutionStatus::from($data['status']);
+        $status = $data['status'];
+        if (is_int($status) || is_string($status)) {
+            return ExecutionStatus::from($status);
+        }
+
+        return ExecutionStatus::PENDING;
     }
 
     /**
@@ -178,7 +200,12 @@ final class ReportResultController extends AbstractApiController
             return new \DateTimeImmutable();
         }
 
-        return new \DateTimeImmutable($data[$key]);
+        $value = $data[$key];
+        if (is_string($value)) {
+            return new \DateTimeImmutable($value);
+        }
+
+        return new \DateTimeImmutable();
     }
 
     private function verifyReportSignature(ReportExecutionResultRequest $reportRequest, string $certificate): void

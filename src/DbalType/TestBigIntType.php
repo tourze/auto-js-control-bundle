@@ -33,6 +33,17 @@ class TestBigIntType extends BigIntType
             return (string) $value;
         }
 
-        return (string) $value;
+        if (is_string($value)) {
+            return $value;
+        }
+
+        // 处理其他类型，确保总是返回字符串
+        if (is_scalar($value)) {
+            return (string) $value;
+        }
+
+        // 对于对象等其他类型，转换为JSON字符串
+        $jsonResult = json_encode($value);
+        return $jsonResult !== false ? $jsonResult : '';
     }
 }

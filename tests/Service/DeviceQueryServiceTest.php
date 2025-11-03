@@ -68,13 +68,17 @@ final class DeviceQueryServiceTest extends TestCase
         // Assert
         $this->assertArrayHasKey('devices', $result);
         $this->assertArrayHasKey('pagination', $result);
-        $this->assertCount(2, $result['devices']);
-        $this->assertEquals(2, $result['pagination']['total']);
-        $this->assertEquals(1, $result['pagination']['page']);
-        $this->assertEquals(20, $result['pagination']['limit']);
-        $this->assertEquals(1, $result['pagination']['totalPages']);
-        $this->assertContains($device1, $result['devices']);
-        $this->assertContains($device3, $result['devices']);
+        $devices = $result['devices'];
+        $pagination = $result['pagination'];
+        $this->assertIsArray($devices);
+        $this->assertIsArray($pagination);
+        $this->assertCount(2, $devices);
+        $this->assertEquals(2, $pagination['total']);
+        $this->assertEquals(1, $pagination['page']);
+        $this->assertEquals(20, $pagination['limit']);
+        $this->assertEquals(1, $pagination['totalPages']);
+        $this->assertContains($device1, $devices);
+        $this->assertContains($device3, $devices);
     }
 
     #[Test]
@@ -101,11 +105,15 @@ final class DeviceQueryServiceTest extends TestCase
         $result = $this->service->getOnlineDevices(2, 10);
 
         // Assert
-        $this->assertCount(10, $result['devices']);
-        $this->assertEquals(25, $result['pagination']['total']);
-        $this->assertEquals(2, $result['pagination']['page']);
-        $this->assertEquals(10, $result['pagination']['limit']);
-        $this->assertEquals(3, $result['pagination']['totalPages']); // ceil(25/10)
+        $devices = $result['devices'];
+        $pagination = $result['pagination'];
+        $this->assertIsArray($devices);
+        $this->assertIsArray($pagination);
+        $this->assertCount(10, $devices);
+        $this->assertEquals(25, $pagination['total']);
+        $this->assertEquals(2, $pagination['page']);
+        $this->assertEquals(10, $pagination['limit']);
+        $this->assertEquals(3, $pagination['totalPages']); // ceil(25/10)
     }
 
     #[Test]
@@ -125,8 +133,12 @@ final class DeviceQueryServiceTest extends TestCase
         $result = $this->service->getOnlineDevices();
 
         // Assert
-        $this->assertEmpty($result['devices']);
-        $this->assertEquals(0, $result['pagination']['total']);
+        $devices = $result['devices'];
+        $pagination = $result['pagination'];
+        $this->assertIsArray($devices);
+        $this->assertIsArray($pagination);
+        $this->assertEmpty($devices);
+        $this->assertEquals(0, $pagination['total']);
     }
 
     #[Test]
@@ -273,20 +285,25 @@ final class DeviceQueryServiceTest extends TestCase
         $stats = $this->service->getDeviceStatistics();
 
         // Assert
+        $this->assertIsArray($stats);
         $this->assertEquals(5, $stats['total']);
         $this->assertEquals(2, $stats['online']);
         $this->assertEquals(2, $stats['offline']);
         $this->assertEquals(0, $stats['maintenance']);
 
         // Brand statistics
-        $this->assertEquals(2, $stats['byBrand']['Samsung']);
-        $this->assertEquals(1, $stats['byBrand']['Xiaomi']);
-        $this->assertEquals(1, $stats['byBrand']['Unknown']);
+        $byBrand = $stats['byBrand'];
+        $this->assertIsArray($byBrand);
+        $this->assertEquals(2, $byBrand['Samsung']);
+        $this->assertEquals(1, $byBrand['Xiaomi']);
+        $this->assertEquals(1, $byBrand['Unknown']);
 
         // OS version statistics
-        $this->assertEquals(2, $stats['byOsVersion']['Android 11']);
-        $this->assertEquals(1, $stats['byOsVersion']['Android 12']);
-        $this->assertEquals(1, $stats['byOsVersion']['Unknown']);
+        $byOsVersion = $stats['byOsVersion'];
+        $this->assertIsArray($byOsVersion);
+        $this->assertEquals(2, $byOsVersion['Android 11']);
+        $this->assertEquals(1, $byOsVersion['Android 12']);
+        $this->assertEquals(1, $byOsVersion['Unknown']);
     }
 
     #[Test]

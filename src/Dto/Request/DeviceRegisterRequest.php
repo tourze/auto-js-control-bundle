@@ -119,7 +119,14 @@ final class DeviceRegisterRequest
      */
     public function getCpuCores(): int
     {
-        return $this->hardwareInfo['cpuCores'] ?? 0;
+        $value = $this->hardwareInfo['cpuCores'] ?? 0;
+        if (is_int($value)) {
+            return $value;
+        }
+        if (is_numeric($value)) {
+            return (int) $value;
+        }
+        return 0;
     }
 
     /**
@@ -127,7 +134,14 @@ final class DeviceRegisterRequest
      */
     public function getMemorySize(): int
     {
-        return $this->hardwareInfo['memorySize'] ?? 0;
+        $value = $this->hardwareInfo['memorySize'] ?? 0;
+        if (is_int($value)) {
+            return $value;
+        }
+        if (is_numeric($value)) {
+            return (int) $value;
+        }
+        return 0;
     }
 
     /**
@@ -135,7 +149,14 @@ final class DeviceRegisterRequest
      */
     public function getStorageSize(): int
     {
-        return $this->hardwareInfo['storageSize'] ?? 0;
+        $value = $this->hardwareInfo['storageSize'] ?? 0;
+        if (is_int($value)) {
+            return $value;
+        }
+        if (is_numeric($value)) {
+            return (int) $value;
+        }
+        return 0;
     }
 
     /**
@@ -143,6 +164,7 @@ final class DeviceRegisterRequest
      */
     public function getScreenResolution(): ?string
     {
-        return $this->hardwareInfo['screenResolution'] ?? null;
+        $value = $this->hardwareInfo['screenResolution'] ?? null;
+        return is_string($value) ? $value : null;
     }
 }
