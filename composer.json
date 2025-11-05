@@ -42,7 +42,7 @@
     "symfony/validator": "^7.3",
     "symfony/yaml": "^7.3",
     "tourze/bundle-dependency": "1.*",
-    "tourze/device-bundle": "0.1.*",
+    "tourze/device-bundle": "1.0.*",
     "tourze/doctrine-indexed-bundle": "1.0.*",
     "tourze/doctrine-ip-bundle": "1.0.*",
     "tourze/doctrine-timestamp-bundle": "1.0.*",
