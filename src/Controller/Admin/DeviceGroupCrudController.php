@@ -19,7 +19,7 @@ use Tourze\AutoJsControlBundle\Entity\DeviceGroup;
 /**
  * @extends AbstractCrudController<DeviceGroup>
  */
-#[AdminCrud(routePath: '/admin/device-group')]
+#[AdminCrud(routePath: '/auto-js/device-group', routeName: 'auto_js_device_group')]
 final class DeviceGroupCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -73,11 +73,8 @@ final class DeviceGroupCrudController extends AbstractCrudController
 
         // 统计信息（虚拟字段）
         yield IntegerField::new('deviceCount', '设备数量')
-            ->setVirtual(true)
             ->setHelp('当前组内的设备数量')
-            ->formatValue(function ($value, DeviceGroup $entity) {
-                return $entity->getAutoJsDevices()->count();
-            })
+            ->hideOnForm()
         ;
 
         yield IntegerField::new('activeDeviceCount', '在线设备数')

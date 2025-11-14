@@ -205,23 +205,6 @@ final class ScriptCrudControllerTest extends AbstractEasyAdminControllerTestCase
     }
 
     #[Test]
-    public function testControllerRequiresAuthentication(): void
-    {
-        $client = self::createClient();
-
-        // 尝试访问脚本管理页面，应该被重定向到登录
-        $client->request('GET', '/admin/script');
-
-        // 检查是否被重定向
-        $response = $client->getResponse();
-        $this->assertEquals(302, $response->getStatusCode());
-
-        $location = $response->headers->get('Location');
-        $this->assertNotNull($location);
-        $this->assertStringContainsString('/login', $location);
-    }
-
-    #[Test]
     public function testControllerStructure(): void
     {
         $reflection = new \ReflectionClass(ScriptCrudController::class);

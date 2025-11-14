@@ -23,7 +23,7 @@ use Tourze\EasyAdminEnumFieldBundle\Field\EnumField;
 /**
  * @extends AbstractCrudController<ScriptExecutionRecord>
  */
-#[AdminCrud]
+#[AdminCrud(routePath: '/auto-js/script-execution-record', routeName: 'auto_js_script_execution_record')]
 final class ScriptExecutionRecordCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

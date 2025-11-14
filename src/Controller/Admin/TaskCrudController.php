@@ -26,7 +26,7 @@ use Tourze\EasyAdminEnumFieldBundle\Field\EnumField;
 /**
  * @extends AbstractCrudController<Task>
  */
-#[AdminCrud]
+#[AdminCrud(routePath: '/auto-js/task', routeName: 'auto_js_task')]
 final class TaskCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

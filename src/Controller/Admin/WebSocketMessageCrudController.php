@@ -28,7 +28,7 @@ use Tourze\AutoJsControlBundle\Entity\WebSocketMessage;
  *
  * @extends AbstractCrudController<WebSocketMessage>
  */
-#[AdminCrud]
+#[AdminCrud(routePath: '/auto-js/websocket-message', routeName: 'auto_js_websocket_message')]
 final class WebSocketMessageCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

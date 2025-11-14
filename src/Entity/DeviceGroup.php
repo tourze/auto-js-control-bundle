@@ -132,4 +132,9 @@ class DeviceGroup implements \Stringable
             }
         }
     }
+
+    public function getDeviceCount(): int
+    {
+        return $this->autoJsDevices->count();
+    }
 }

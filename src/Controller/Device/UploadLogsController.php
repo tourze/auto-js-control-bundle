@@ -140,11 +140,24 @@ final class UploadLogsController extends AbstractApiController
                 'type' => is_string($log['type'] ?? '') ? $log['type'] : 'GENERAL',
                 'message' => is_string($log['message'] ?? '') ? $log['message'] : '',
                 'logTime' => is_string($log['logTime'] ?? '') ? $log['logTime'] : new \DateTimeImmutable()->format('c'),
-                'context' => isset($log['context']) ? (is_string($log['context']) || is_null($log['context']) ? $log['context'] : json_encode($log['context'])) : null,
-                'stackTrace' => isset($log['stackTrace']) ? (is_string($log['stackTrace']) || is_null($log['stackTrace']) ? $log['stackTrace'] : json_encode($log['stackTrace'])) : null,
+                'context' => $this->normalizeJsonField($log['context'] ?? null),
+                'stackTrace' => $this->normalizeJsonField($log['stackTrace'] ?? null),
             ];
         }
 
         return $result;
+    }
+
+    private function normalizeJsonField(mixed $value): ?string
+    {
+        if (is_null($value)) {
+            return null;
+        }
+
+        if (is_string($value)) {
+            return $value;
+        }
+
+        return json_encode($value);
     }
 }
