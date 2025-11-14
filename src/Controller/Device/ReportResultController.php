@@ -67,7 +67,7 @@ final class ReportResultController extends AbstractApiController
                 return $this->successResponse([
                     'status' => 'ok',
                     'message' => '执行结果已记录',
-                    'serverTime' => (new \DateTimeImmutable())->format('c'),
+                    'serverTime' => new \DateTimeImmutable()->format('c'),
                 ]);
             });
 
@@ -171,7 +171,7 @@ final class ReportResultController extends AbstractApiController
             return null;
         }
 
-        return array_filter($data[$key], fn($item) => is_string($item));
+        return array_filter($data[$key], fn ($item) => is_string($item));
     }
 
     /**
@@ -243,7 +243,7 @@ final class ReportResultController extends AbstractApiController
     {
         $this->cacheStorage->updateInstructionStatus($instructionId, [
             'status' => $status,
-            'updateTime' => (new \DateTimeImmutable())->format('c'),
+            'updateTime' => new \DateTimeImmutable()->format('c'),
         ]);
     }
 }

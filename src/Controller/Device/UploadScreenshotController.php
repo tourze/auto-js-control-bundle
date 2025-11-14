@@ -83,7 +83,7 @@ final class UploadScreenshotController extends AbstractApiController
                 'status' => 'ok',
                 'message' => '截图上传成功',
                 'filename' => $filename,
-                'serverTime' => (new \DateTimeImmutable())->format('c'),
+                'serverTime' => new \DateTimeImmutable()->format('c'),
             ]);
         } catch (UnauthorizedHttpException $e) {
             return $this->errorResponse($e->getMessage(), Response::HTTP_UNAUTHORIZED);

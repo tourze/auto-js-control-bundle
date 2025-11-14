@@ -39,7 +39,7 @@ abstract class AbstractApiController extends AbstractController
         $data = [
             'status' => 'error',
             'message' => $message,
-            'serverTime' => (new \DateTimeImmutable())->format('c'),
+            'serverTime' => new \DateTimeImmutable()->format('c'),
         ];
 
         if (null !== $errors) {

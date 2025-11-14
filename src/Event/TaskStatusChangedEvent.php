@@ -208,7 +208,7 @@ class TaskStatusChangedEvent extends Event
             'oldStatus' => $this->previousStatus->value,
             'newStatus' => $this->currentStatus->value,
             'scriptId' => $this->task->getScript()?->getId(),
-            'timestamp' => $this->statusChangedTime?->format('Y-m-d H:i:s') ?? (new \DateTime())->format('Y-m-d H:i:s'),
+            'timestamp' => $this->statusChangedTime?->format('Y-m-d H:i:s') ?? new \DateTime()->format('Y-m-d H:i:s'),
         ];
     }
 

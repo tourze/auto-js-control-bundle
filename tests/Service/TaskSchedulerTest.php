@@ -183,8 +183,8 @@ final class TaskSchedulerTest extends AbstractIntegrationTestCase
         $script = $this->createTestScript();
         $device = $this->createTestDevice('SCHEDULED_DEVICE');
 
-        $pastTime = (new \DateTimeImmutable())->modify('-5 minutes');
-        $futureTime = (new \DateTimeImmutable())->modify('+5 minutes');
+        $pastTime = new \DateTimeImmutable()->modify('-5 minutes');
+        $futureTime = new \DateTimeImmutable()->modify('+5 minutes');
 
         // 创建已到期的任务
         $pastTask = new Task();
@@ -241,7 +241,7 @@ final class TaskSchedulerTest extends AbstractIntegrationTestCase
         $script = $this->createTestScript();
         $device = $this->createTestDevice('MULTI_SCHEDULED_DEVICE');
 
-        $pastTime = (new \DateTimeImmutable())->modify('-5 minutes');
+        $pastTime = new \DateTimeImmutable()->modify('-5 minutes');
 
         // 创建多个已到期的任务
         $tasks = [];
@@ -453,7 +453,7 @@ final class TaskSchedulerTest extends AbstractIntegrationTestCase
         $task->setParameters('{}');
         $task->setCronExpression('* * * * *');
         // 设置很久之前的执行时间，确保现在应该执行
-        $task->setLastExecutionTime((new \DateTimeImmutable())->modify('-10 minutes'));
+        $task->setLastExecutionTime(new \DateTimeImmutable()->modify('-10 minutes'));
         self::getEntityManager()->persist($task);
         self::getEntityManager()->flush();
 
@@ -620,7 +620,7 @@ final class TaskSchedulerTest extends AbstractIntegrationTestCase
         $task->setStatus(TaskStatus::PENDING);
         $task->setScript($script);
         $task->setParameters('{}');
-        $task->setScheduledTime((new \DateTimeImmutable())->modify('+1 hour')); // 原本计划1小时后执行
+        $task->setScheduledTime(new \DateTimeImmutable()->modify('+1 hour')); // 原本计划1小时后执行
         self::getEntityManager()->persist($task);
         self::getEntityManager()->flush();
 

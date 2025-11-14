@@ -445,7 +445,7 @@ final class InstructionQueueServiceTest extends AbstractIntegrationTestCase
         // Act - 使用新的方法
         $statusData = array_merge([
             'status' => $statusValue,
-            'updateTime' => (new \DateTimeImmutable())->format(\DateTimeInterface::RFC3339),
+            'updateTime' => new \DateTimeImmutable()->format(\DateTimeInterface::RFC3339),
         ], $additionalData);
         $cacheStorageService->updateInstructionStatus($instructionId, $statusData);
 

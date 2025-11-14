@@ -90,7 +90,7 @@ final class UploadLogsController extends AbstractApiController
                 'status' => 'ok',
                 'message' => sprintf('已保存 %d 条日志', $savedCount),
                 'savedCount' => $savedCount,
-                'serverTime' => (new \DateTimeImmutable())->format('c'),
+                'serverTime' => new \DateTimeImmutable()->format('c'),
             ]);
         } catch (UnauthorizedHttpException $e) {
             return $this->errorResponse($e->getMessage(), Response::HTTP_UNAUTHORIZED);
@@ -139,7 +139,7 @@ final class UploadLogsController extends AbstractApiController
                 'level' => is_string($log['level'] ?? '') ? $log['level'] : 'INFO',
                 'type' => is_string($log['type'] ?? '') ? $log['type'] : 'GENERAL',
                 'message' => is_string($log['message'] ?? '') ? $log['message'] : '',
-                'logTime' => is_string($log['logTime'] ?? '') ? $log['logTime'] : (new \DateTimeImmutable())->format('c'),
+                'logTime' => is_string($log['logTime'] ?? '') ? $log['logTime'] : new \DateTimeImmutable()->format('c'),
                 'context' => isset($log['context']) ? (is_string($log['context']) || is_null($log['context']) ? $log['context'] : json_encode($log['context'])) : null,
                 'stackTrace' => isset($log['stackTrace']) ? (is_string($log['stackTrace']) || is_null($log['stackTrace']) ? $log['stackTrace'] : json_encode($log['stackTrace'])) : null,
             ];

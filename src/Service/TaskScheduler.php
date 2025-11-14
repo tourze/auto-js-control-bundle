@@ -388,7 +388,7 @@ readonly class TaskScheduler
         // 计算下次重试时间（指数退避策略）
         $retryDelay = min(300, pow(2, $task->getRetryCount()) * 10); // 最多5分钟
         $task->setScheduledTime(
-            (new \DateTimeImmutable())->add(new \DateInterval('PT' . $retryDelay . 'S'))
+            new \DateTimeImmutable()->add(new \DateInterval('PT' . $retryDelay . 'S'))
         );
 
         $this->entityManager->flush();

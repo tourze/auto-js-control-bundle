@@ -111,7 +111,7 @@ final class GetScriptControllerTest extends AbstractWebTestCase
     {
         $this->assertEquals(
             'Tourze\AutoJsControlBundle\Controller\Device',
-            (new \ReflectionClass(GetScriptController::class))->getNamespaceName()
+            new \ReflectionClass(GetScriptController::class)->getNamespaceName()
         );
     }
 

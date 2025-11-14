@@ -202,7 +202,7 @@ final class ScriptExecutionRecordCrudController extends AbstractCrudController
 
         if (null === $end) {
             if ('running' === $entity->getStatus()->value) {
-                $duration = (new \DateTimeImmutable())->getTimestamp() - $start->getTimestamp();
+                $duration = new \DateTimeImmutable()->getTimestamp() - $start->getTimestamp();
 
                 return $duration . '秒 (运行中)';
             }

@@ -210,7 +210,7 @@ final class TaskCrudController extends AbstractCrudController
                 }
 
                 if (null === $end) {
-                    $duration = (new \DateTimeImmutable())->getTimestamp() - $start->getTimestamp();
+                    $duration = new \DateTimeImmutable()->getTimestamp() - $start->getTimestamp();
 
                     return $duration . '秒 (进行中)';
                 }

@@ -126,6 +126,7 @@ final class DeviceRegisterRequest
         if (is_numeric($value)) {
             return (int) $value;
         }
+
         return 0;
     }
 
@@ -141,6 +142,7 @@ final class DeviceRegisterRequest
         if (is_numeric($value)) {
             return (int) $value;
         }
+
         return 0;
     }
 
@@ -156,6 +158,7 @@ final class DeviceRegisterRequest
         if (is_numeric($value)) {
             return (int) $value;
         }
+
         return 0;
     }
 
@@ -165,6 +168,7 @@ final class DeviceRegisterRequest
     public function getScreenResolution(): ?string
     {
         $value = $this->hardwareInfo['screenResolution'] ?? null;
+
         return is_string($value) ? $value : null;
     }
 }

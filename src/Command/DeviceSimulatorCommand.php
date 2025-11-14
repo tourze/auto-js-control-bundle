@@ -445,7 +445,7 @@ final class DeviceSimulatorCommand extends Command
                 $instruction->getInstructionId(),
                 [
                     'status' => $result->getStatus()->value,
-                    'updateTime' => (new \DateTimeImmutable())->format(\DateTimeInterface::RFC3339),
+                    'updateTime' => new \DateTimeImmutable()->format(\DateTimeInterface::RFC3339),
                     'output' => $result->getOutput(),
                     'errorMessage' => $result->getErrorMessage(),
                 ]

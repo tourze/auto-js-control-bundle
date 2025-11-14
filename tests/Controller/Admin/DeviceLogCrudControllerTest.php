@@ -197,7 +197,7 @@ final class DeviceLogCrudControllerTest extends AbstractEasyAdminControllerTestC
     {
         $this->assertEquals(
             'Tourze\AutoJsControlBundle\Controller\Admin',
-            (new \ReflectionClass(DeviceLogCrudController::class))->getNamespaceName()
+            new \ReflectionClass(DeviceLogCrudController::class)->getNamespaceName()
         );
     }
 

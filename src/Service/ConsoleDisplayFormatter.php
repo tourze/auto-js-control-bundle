@@ -107,7 +107,7 @@ final class ConsoleDisplayFormatter
                 $instruction['instructionId'] ?? 'N/A',
                 $instruction['type'] ?? 'unknown',
                 $instruction['priority'] ?? 0,
-                isset($instruction['createTime']) ? (new \DateTime($this->safelyParseString($instruction['createTime'])))->format('H:i:s') : 'N/A',
+                isset($instruction['createTime']) ? new \DateTime($this->safelyParseString($instruction['createTime']))->format('H:i:s') : 'N/A',
                 $this->getInstructionSummary($instruction),
             ];
         }
@@ -310,7 +310,7 @@ final class ConsoleDisplayFormatter
 
     public function updateStatusSection(ConsoleSectionOutput $section, int $iteration): void
     {
-        $timestamp = (new \DateTime())->format('Y-m-d H:i:s');
+        $timestamp = new \DateTime()->format('Y-m-d H:i:s');
 
         $section->clear();
         $section->writeln(sprintf(

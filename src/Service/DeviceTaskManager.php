@@ -33,7 +33,7 @@ readonly class DeviceTaskManager
             'welcome',
             [
                 'message' => '欢迎加入Auto.js控制系统',
-                'serverTime' => (new \DateTime())->format('Y-m-d H:i:s'),
+                'serverTime' => new \DateTime()->format('Y-m-d H:i:s'),
                 'deviceId' => $device->getId(),
             ],
             300,

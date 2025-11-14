@@ -121,7 +121,7 @@ final class RegisterController extends AbstractApiController
             'deviceId' => (string) $autoJsDevice->getId(),
             'certificate' => $certificate,
             'message' => '设备注册成功',
-            'serverTime' => (new \DateTimeImmutable())->format('c'),
+            'serverTime' => new \DateTimeImmutable()->format('c'),
             'config' => [
                 'heartbeatInterval' => 30,
                 'logUploadInterval' => 300,

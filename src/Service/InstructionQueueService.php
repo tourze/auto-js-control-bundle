@@ -106,7 +106,7 @@ readonly class InstructionQueueService
     {
         $this->cacheStorage->updateInstructionStatus($instruction->getInstructionId(), [
             'status' => 'pending',
-            'updateTime' => (new \DateTimeImmutable())->format(\DateTimeInterface::RFC3339),
+            'updateTime' => new \DateTimeImmutable()->format(\DateTimeInterface::RFC3339),
         ]);
     }
 
@@ -341,7 +341,7 @@ readonly class InstructionQueueService
     {
         $this->cacheStorage->updateInstructionStatus($instruction->getInstructionId(), [
             'status' => 'executing',
-            'updateTime' => (new \DateTimeImmutable())->format(\DateTimeInterface::RFC3339),
+            'updateTime' => new \DateTimeImmutable()->format(\DateTimeInterface::RFC3339),
         ]);
     }
 
@@ -349,7 +349,7 @@ readonly class InstructionQueueService
     {
         $this->cacheStorage->updateInstructionStatus($instruction->getInstructionId(), [
             'status' => 'expired',
-            'updateTime' => (new \DateTimeImmutable())->format(\DateTimeInterface::RFC3339),
+            'updateTime' => new \DateTimeImmutable()->format(\DateTimeInterface::RFC3339),
         ]);
         $this->logger->warning('指令已过期', [
             'instructionId' => $instruction->getInstructionId(),
@@ -381,7 +381,7 @@ readonly class InstructionQueueService
     ): void {
         $data = array_merge([
             'status' => $status,
-            'updateTime' => (new \DateTimeImmutable())->format(\DateTimeInterface::RFC3339),
+            'updateTime' => new \DateTimeImmutable()->format(\DateTimeInterface::RFC3339),
         ], $additionalData);
 
         // 使用 CacheStorageService 更新状态
@@ -495,7 +495,7 @@ readonly class InstructionQueueService
     {
         $this->cacheStorage->updateInstructionStatus($instructionId, [
             'status' => 'cancelled',
-            'updateTime' => (new \DateTimeImmutable())->format(\DateTimeInterface::RFC3339),
+            'updateTime' => new \DateTimeImmutable()->format(\DateTimeInterface::RFC3339),
         ]);
     }
 
@@ -579,7 +579,7 @@ readonly class InstructionQueueService
 
             $this->cacheStorage->updateInstructionStatus($data['instructionId'], [
                 'status' => 'cleared',
-                'updateTime' => (new \DateTimeImmutable())->format(\DateTimeInterface::RFC3339),
+                'updateTime' => new \DateTimeImmutable()->format(\DateTimeInterface::RFC3339),
             ]);
         } catch (\Exception $e) {
             // 忽略解析错误

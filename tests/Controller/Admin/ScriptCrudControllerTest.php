@@ -200,7 +200,7 @@ final class ScriptCrudControllerTest extends AbstractEasyAdminControllerTestCase
     {
         $this->assertEquals(
             'Tourze\AutoJsControlBundle\Controller\Admin',
-            (new \ReflectionClass(ScriptCrudController::class))->getNamespaceName()
+            new \ReflectionClass(ScriptCrudController::class)->getNamespaceName()
         );
     }
 

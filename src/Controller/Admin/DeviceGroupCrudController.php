@@ -11,7 +11,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -20,7 +19,7 @@ use Tourze\AutoJsControlBundle\Entity\DeviceGroup;
 /**
  * @extends AbstractCrudController<DeviceGroup>
  */
-#[AdminCrud]
+#[AdminCrud(routePath: '/admin/device-group')]
 final class DeviceGroupCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -33,7 +32,7 @@ final class DeviceGroupCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('设备组')
             ->setEntityLabelInPlural('设备组管理')
-            ->setDefaultSort(['createTime' => 'DESC'])
+            ->setDefaultSort(['id' => 'DESC'])
             ->setPageTitle('index', '设备组管理')
             ->setPageTitle('new', '创建设备组')
             ->setPageTitle('edit', '编辑设备组')
@@ -57,28 +56,18 @@ final class DeviceGroupCrudController extends AbstractCrudController
             ->setColumns(6)
         ;
 
-        yield TextField::new('code', '组代码')
-            ->setHelp('设备组的唯一标识符')
-            ->setColumns(6)
-        ;
-
         yield TextareaField::new('description', '组描述')
             ->setHelp('详细描述设备组的用途')
             ->hideOnIndex()
             ->setNumOfRows(4)
         ;
 
-        yield BooleanField::new('active', '是否激活')
+        yield BooleanField::new('valid', '是否启用')
             ->setHelp('控制设备组是否可用')
         ;
 
-        yield IntegerField::new('maxDevices', '最大设备数')
-            ->setHelp('组内最多允许的设备数量')
-            ->setColumns(6)
-        ;
-
-        yield IntegerField::new('priority', '优先级')
-            ->setHelp('设备组的优先级，数值越大优先级越高')
+        yield IntegerField::new('sortOrder', '排序值')
+            ->setHelp('设备组的排序值')
             ->setColumns(6)
         ;
 
@@ -107,16 +96,6 @@ final class DeviceGroupCrudController extends AbstractCrudController
             })
         ;
 
-        // TODO: 需要在Task实体中添加反向关系或使用Repository查询
-        // yield IntegerField::new('taskCount', '关联任务数')
-        //     ->setVirtual(true)
-        //     ->setHelp('使用此设备组的任务数量')
-        //     ->onlyOnDetail()
-        //     ->formatValue(function ($value, DeviceGroup $entity) {
-        //         return $entity->getTasks()->count();
-        //     })
-        // ;
-
         // 系统字段
         yield TextField::new('createdBy', '创建者')
             ->onlyOnDetail()
@@ -126,16 +105,6 @@ final class DeviceGroupCrudController extends AbstractCrudController
         yield TextField::new('updatedBy', '更新者')
             ->onlyOnDetail()
             ->setColumns(6)
-        ;
-
-        yield DateTimeField::new('createTime', '创建时间')
-            ->setFormat('yyyy-MM-dd HH:mm:ss')
-            ->onlyOnDetail()
-        ;
-
-        yield DateTimeField::new('updateTime', '更新时间')
-            ->setFormat('yyyy-MM-dd HH:mm:ss')
-            ->onlyOnDetail()
         ;
 
         // 使用率统计
@@ -168,8 +137,6 @@ final class DeviceGroupCrudController extends AbstractCrudController
         return $filters
             ->add('name')
             ->add('description')
-            ->add('createdAt')
-            ->add('updatedAt')
         ;
     }
 }

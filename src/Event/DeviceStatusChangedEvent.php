@@ -153,7 +153,7 @@ class DeviceStatusChangedEvent extends Event
             'deviceId' => $this->device->getId(),
             'oldStatus' => $this->getStatusValue($this->previousStatus),
             'newStatus' => $this->getStatusValue($this->currentStatus),
-            'timestamp' => $this->statusChangedTime?->format('Y-m-d H:i:s') ?? (new \DateTime())->format('Y-m-d H:i:s'),
+            'timestamp' => $this->statusChangedTime?->format('Y-m-d H:i:s') ?? new \DateTime()->format('Y-m-d H:i:s'),
         ];
     }
 

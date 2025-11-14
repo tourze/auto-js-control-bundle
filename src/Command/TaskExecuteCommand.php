@@ -727,7 +727,7 @@ final class TaskExecuteCommand extends Command
 
         $statusMessage = sprintf(
             '[%s] 任务状态: <fg=%s>%s</>',
-            (new \DateTime())->format('H:i:s'),
+            new \DateTime()->format('H:i:s'),
             $this->getStatusColor($task->getStatus()),
             $task->getStatus()->value
         );

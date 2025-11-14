@@ -35,10 +35,8 @@ final class DeviceGroupCrudControllerTest extends AbstractEasyAdminControllerTes
     public static function provideIndexPageHeaders(): iterable
     {
         yield '组名称' => ['组名称'];
-        yield '组代码' => ['组代码'];
-        yield '是否激活' => ['是否激活'];
-        yield '最大设备数' => ['最大设备数'];
-        yield '优先级' => ['优先级'];
+        yield '是否启用' => ['是否启用'];
+        yield '排序值' => ['排序值'];
         yield '设备数量' => ['设备数量'];
     }
 
@@ -48,11 +46,9 @@ final class DeviceGroupCrudControllerTest extends AbstractEasyAdminControllerTes
     public static function provideNewPageFields(): iterable
     {
         yield 'name' => ['name'];
-        yield 'code' => ['code'];
         yield 'description' => ['description'];
-        yield 'active' => ['active'];
-        yield 'maxDevices' => ['maxDevices'];
-        yield 'priority' => ['priority'];
+        yield 'valid' => ['valid'];
+        yield 'sortOrder' => ['sortOrder'];
     }
 
     /**
@@ -61,11 +57,9 @@ final class DeviceGroupCrudControllerTest extends AbstractEasyAdminControllerTes
     public static function provideEditPageFields(): iterable
     {
         yield 'name' => ['name'];
-        yield 'code' => ['code'];
         yield 'description' => ['description'];
-        yield 'active' => ['active'];
-        yield 'maxDevices' => ['maxDevices'];
-        yield 'priority' => ['priority'];
+        yield 'valid' => ['valid'];
+        yield 'sortOrder' => ['sortOrder'];
     }
 
     #[Test]
@@ -185,7 +179,7 @@ final class DeviceGroupCrudControllerTest extends AbstractEasyAdminControllerTes
     {
         $this->assertEquals(
             'Tourze\AutoJsControlBundle\Controller\Admin',
-            (new \ReflectionClass(DeviceGroupCrudController::class))->getNamespaceName()
+            new \ReflectionClass(DeviceGroupCrudController::class)->getNamespaceName()
         );
     }
 

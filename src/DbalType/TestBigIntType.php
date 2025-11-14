@@ -44,6 +44,7 @@ class TestBigIntType extends BigIntType
 
         // 对于对象等其他类型，转换为JSON字符串
         $jsonResult = json_encode($value);
-        return $jsonResult !== false ? $jsonResult : '';
+
+        return false !== $jsonResult ? $jsonResult : '';
     }
 }

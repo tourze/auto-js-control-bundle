@@ -74,7 +74,7 @@ final class MonitoringCoordinator
     private function fallbackToStaticDisplay(?string $deviceCode, int $limit, SymfonyStyle $io): void
     {
         $io->write("\033[2J\033[H");
-        $io->title(sprintf('Auto.js 指令队列监控 - [%s]', (new \DateTime())->format('H:i:s')));
+        $io->title(sprintf('Auto.js 指令队列监控 - [%s]', new \DateTime()->format('H:i:s')));
         $this->displayQueueStatus($deviceCode, $limit, $io);
     }
 

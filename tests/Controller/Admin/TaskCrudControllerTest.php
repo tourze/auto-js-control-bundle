@@ -192,7 +192,7 @@ final class TaskCrudControllerTest extends AbstractEasyAdminControllerTestCase
     {
         $this->assertEquals(
             'Tourze\AutoJsControlBundle\Controller\Admin',
-            (new \ReflectionClass(TaskCrudController::class))->getNamespaceName()
+            new \ReflectionClass(TaskCrudController::class)->getNamespaceName()
         );
     }
 

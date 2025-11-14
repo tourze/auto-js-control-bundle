@@ -198,7 +198,7 @@ final class WebSocketMessageCrudControllerTest extends AbstractEasyAdminControll
     {
         $this->assertEquals(
             'Tourze\AutoJsControlBundle\Controller\Admin',
-            (new \ReflectionClass(WebSocketMessageCrudController::class))->getNamespaceName()
+            new \ReflectionClass(WebSocketMessageCrudController::class)->getNamespaceName()
         );
     }
 
